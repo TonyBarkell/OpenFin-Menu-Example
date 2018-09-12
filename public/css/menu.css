@@ -1,0 +1,32 @@
+:root {
+    --backgroundColour : #1c1c31;
+    --textColour:#FFFFFF;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    border : 0px;
+}
+
+body{
+    overflow : hidden;
+    
+}
+
+.subMenuItem{
+    height : 50px;
+    width : 100px;
+    margin: 0px ;
+    border : 1px solid black;
+    background-color : #35355e;
+    color : var(--textColour);
+    text-align: center;
+    vertical-align : middle;
+    overflow: hidden;
+}
+
+.subMenuItem:hover {
+    background-color: #414174;
+  }
+

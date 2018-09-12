@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/main.css">
+        <script src="./scripts/main.js"></script>
+    </head>
+    <body>
+        <div id="titleFrame">
+            <div id="titleBar">
+                <p>OpenFin Support - Sub Menu Example</p>
+                <img class="titleBarMinimize" onclick="minimiseWindow()" src="../shared/images/minimize.svg" alt="">
+                <img class="titleBarClose" onclick="closeWindow()" src="../shared/images/close-x.svg" alt="">
+            </div>
+        </div>
+        <div>
+            <div id="button1" class="menuItem" onclick="openMenuRelativeToDiv('button1', 'menu1', '../pages/menu1.html', 260)">Menu 1</div>
+            <div id="button2" class="menuItem" onclick="openMenuRelativeToDiv('button2', 'menu2', '../pages/menu1.html', 260)">Menu 2</div>
+            <div id="button3" class="menuItem" onclick="openMenuRelativeToDiv('button3', 'menu3', '../pages/menu1.html', 260)">Menu 3</div>
+            <div id="button4" class="menuItem" onclick="openMenuRelativeToDiv('button4', 'menu4', '../pages/menu1.html', 260)">Menu 4</div>
+        </div>
+    </body>
+</html>

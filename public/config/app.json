@@ -1,0 +1,21 @@
+{
+    "startup_app": {
+        "url": "http://localhost:8080/index.html",
+        "name": "OpenFin",
+        "uuid": "of-test-template",
+        "frame": false,
+        "autoShow": true,
+        "defaultWidth": 408,
+        "defaultHeight": 150,
+        "saveWindowState": true,
+        "resizable": false,
+        "applicationIcon": "http://localhost:8080/favicon.ico"
+    },
+    "runtime": {
+        "version": "9.61.33.32",
+        "arguments": "--security-realm=OpenFinSubMenu"
+    },
+    "shortcut": {
+        "icon": "http://localhost:8080/favicon.ico"
+    }
+}
