@@ -1,5 +1,7 @@
-var mainWindow = fin.desktop.Window.getCurrent();
+
+// Tracking the state of the sub menu, the top level menu will remain open if the sub menu is open
 var subMenuOpen = false;
+
 document.addEventListener("mouseleave", closeWindow);
 
 function closeWindow(){
@@ -11,6 +13,7 @@ function closeWindow(){
 
 function openMenuRelativeToMouse( windowName, url, menuHeight, menuWidth){
     subMenuOpen = true;
+
     // Use the OpenFin getMousePosition() kethod to deterine the position of the mouse without using an event listener
     fin.desktop.System.getMousePosition(function (mousePosition) {
         var menuLeftCoOrd = mousePosition.left;
@@ -30,21 +33,18 @@ function openMenuRelativeToMouse( windowName, url, menuHeight, menuWidth){
             alwaysOnTop: true,
             frame: false
         },
-        function() {
+        function(){
             console.log("Window opened: " + windowName);
             // This OpenFin API method joins the Menu window to the main window, so they move together
+            var mainWindow = fin.desktop.Window.getCurrent();
             win.joinGroup(mainWindow);
             win.show();
             win.addEventListener("closed", function(event){
                 subMenuOpen = false;
             });
-        },
-        function(error) {
+        },function(error) {
             subMenuOpen = false;
             console.log("Error creating window: " + windowName, error);
-        }
-    );
-    
+        });
     });
-
 }

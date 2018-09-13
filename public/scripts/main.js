@@ -1,48 +1,50 @@
-var mainWindow = fin.desktop.Window.getCurrent();
 
 
-function openMenuRelativeToDiv(buttonID, windowName, url, menuHeight){
-    // Calculate the postion of the button
+async function openMenuRelativeToDiv(buttonID, windowName, url, menuHeight){
+    // Calculate the postion of the button relative to the page
     var button = document.getElementById(buttonID) ;
     var buttonPosition = offset(button);
     var buttonheight = button.clientHeight;
-  
-    // Use the OpenFin API getBounds() method to discover the window position
-    fin.desktop.Window.getCurrent().getBounds(function (bounds) {
-        // Use the Window postion and the button postion on the page to calculate the sub menus window position
-        var menuLeftCoOrd = buttonPosition.left + bounds.left;;
-        var menuTopCoOrd = buttonPosition.top + bounds.top + buttonheight;
 
-        // Now create the new menu as a 'framless' OpenFin Child window.
-        // information about all window options can be found at https://developer.openfin.co/jsdocs/stable/fin.desktop.Window.html#~options
-        var win = new fin.desktop.Window({
-                name:  windowName,
-                url: url,
-                defaultLeft: menuLeftCoOrd,
-                defaultTop: menuTopCoOrd,
-                defaultWidth: button.offsetWidth,
-                defaultHeight: menuHeight,
-                resizable: false,
-                saveWindowState: false,
-                alwaysOnTop: true,
-                frame: false
-            },
-            function() {
-                console.log("Window opened: " + windowName);
-                // This OpenFin API method joins the Menu window to the main window, so they move together
-                win.joinGroup(mainWindow);
-                win.show();
-            },
-            function(error) {
-                console.log("Error creating window: " + windowName, error);
-            }
-        );
+    // Use the OpenFin API getBounds() method to discover the window position
+    // Most OpenFin Methods are Asynchronous
+    let bounds = await new Promise( (resolve, reject) => {
+        fin.desktop.Window.getCurrent().getBounds(resolve, reject); 
     });
+  
+    // Here we add the page co-ords with the buttons relative position to calc the
+    // buttons abosilte window position
+    var menuLeftCoOrd = buttonPosition.left + bounds.left;;
+    var menuTopCoOrd = buttonPosition.top + bounds.top + buttonheight;
+
+    // Now create an OpenFin frameless window that will be the menu/dropdown window.
+    // information about all window options can be found at https://developer.openfin.co/jsdocs/stable/fin.desktop.Window.html#~options
+        win = new fin.desktop.Window({
+            name:  windowName,
+            url: url,
+            defaultLeft: menuLeftCoOrd,
+            defaultTop: menuTopCoOrd,
+            defaultWidth: button.offsetWidth,
+            defaultHeight: menuHeight,
+            resizable: false,
+            saveWindowState: false,
+            alwaysOnTop: true,
+            frame: false
+        },function() {
+            console.log("Window opened: " + windowName);
+            // This OpenFin API method joins the Menu window to the main window, so they move together
+            var mainWindow = fin.desktop.Window.getCurrent();
+            win.joinGroup(mainWindow);
+            win.show();
+        },function(error) {
+            console.log("Error creating window: " + windowName, error);
+        }
+    );
 }
 
-/* 
-Code taken from https://plainjs.com/javascript/styles/get-the-position-of-an-element-relative-to-the-document-24/
-Strandard JS used to determine the position of the button the menu is to be aligned with
+/*
+Standard JS used to determine the position of the button the menu is to be aligned with
+This code is taken from https://plainjs.com/javascript/styles/get-the-position-of-an-element-relative-to-the-document-24/
 */
 function offset(el) {
     var rect = el.getBoundingClientRect(),
