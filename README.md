@@ -21,7 +21,7 @@ Clone this project locally and run
 
 # Running
 
-    npm run
+    npm start
     
 A local server (live-server) hosts the web app locally.  Then the OpenFin CLI is used to launch OpenFin and render the application.
 
