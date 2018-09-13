@@ -8,9 +8,9 @@ The second level menu provides examples a menus that are positioned relative to 
 
 The menus are 'frameless' OpenFin child windows (See [HERE](https://developer.openfin.co/jsdocs/stable/tutorial-window.constructor.html) information on Window construction, positioning is managed using the following OpenFin API methods:
 
-[Window.getBounds()](https://developer.openfin.co/jsdocs/stable/fin.desktop.Window.html#getBounds)
-[Window.joinGroup()](https://developer.openfin.co/jsdocs/stable/fin.desktop.Window.html#joinGroup)
-[System.getMousePosition()](https://developer.openfin.co/jsdocs/stable/fin.desktop.System.html#.getMousePosition)
+* [Window.getBounds()](https://developer.openfin.co/jsdocs/stable/fin.desktop.Window.html#getBounds)
+* [Window.joinGroup()](https://developer.openfin.co/jsdocs/stable/fin.desktop.Window.html#joinGroup)
+* [System.getMousePosition()](https://developer.openfin.co/jsdocs/stable/fin.desktop.System.html#.getMousePosition)
 
 ## Installing the project
 
